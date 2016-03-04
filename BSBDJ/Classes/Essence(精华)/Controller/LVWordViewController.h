@@ -6,8 +6,8 @@
 //  Copyright © 2016年 lvdesheng. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LVTopicViewController.h"
 
-@interface LVWordViewController : UITableViewController
+@interface LVWordViewController : LVTopicViewController
 
 @end

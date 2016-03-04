@@ -77,6 +77,7 @@
 		E7B957991C84219300EF83FA /* LVTopAndBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B957981C84219300EF83FA /* LVTopAndBottomCell.xib */; };
 		E7CB0BDE1C7F165B00EC0F08 /* LVTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CB0BDD1C7F165B00EC0F08 /* LVTitleButton.m */; };
 		E7CF733F1C75EDDC006A22F1 /* UIImage+XMG.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CF733E1C75EDDC006A22F1 /* UIImage+XMG.m */; };
+		E7FB872E1C89244F00E2223A /* LVTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FB872D1C89244E00E2223A /* LVTopicViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +199,8 @@
 		E7CB0BDD1C7F165B00EC0F08 /* LVTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVTitleButton.m; sourceTree = "<group>"; };
 		E7CF733D1C75EDDC006A22F1 /* UIImage+XMG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XMG.h"; sourceTree = "<group>"; };
 		E7CF733E1C75EDDC006A22F1 /* UIImage+XMG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XMG.m"; sourceTree = "<group>"; };
+		E7FB872C1C89244E00E2223A /* LVTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVTopicViewController.h; sourceTree = "<group>"; };
+		E7FB872D1C89244E00E2223A /* LVTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVTopicViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,16 +308,7 @@
 			children = (
 				E7369CBF1C75E50A0073CCCD /* LVEssenceController.h */,
 				E7369CC01C75E50A0073CCCD /* LVEssenceController.m */,
-				E71A2CE21C7F3512004DAB17 /* LVAllViewController.h */,
-				E71A2CE31C7F3512004DAB17 /* LVAllViewController.m */,
-				E71A2CE51C7F3536004DAB17 /* LVVideoViewController.h */,
-				E71A2CE61C7F3536004DAB17 /* LVVideoViewController.m */,
-				E71A2CE81C7F3547004DAB17 /* LVVoiceViewController.h */,
-				E71A2CE91C7F3547004DAB17 /* LVVoiceViewController.m */,
-				E71A2CEB1C7F3558004DAB17 /* LVPictureTableViewController.h */,
-				E71A2CEC1C7F3558004DAB17 /* LVPictureTableViewController.m */,
-				E71A2CEE1C7F356F004DAB17 /* LVWordViewController.h */,
-				E71A2CEF1C7F356F004DAB17 /* LVWordViewController.m */,
+				E7FB872B1C89242300E2223A /* Topic */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -683,6 +677,25 @@
 			path = "启动图片";
 			sourceTree = "<group>";
 		};
+		E7FB872B1C89242300E2223A /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				E71A2CE21C7F3512004DAB17 /* LVAllViewController.h */,
+				E71A2CE31C7F3512004DAB17 /* LVAllViewController.m */,
+				E71A2CE51C7F3536004DAB17 /* LVVideoViewController.h */,
+				E71A2CE61C7F3536004DAB17 /* LVVideoViewController.m */,
+				E71A2CE81C7F3547004DAB17 /* LVVoiceViewController.h */,
+				E71A2CE91C7F3547004DAB17 /* LVVoiceViewController.m */,
+				E71A2CEB1C7F3558004DAB17 /* LVPictureTableViewController.h */,
+				E71A2CEC1C7F3558004DAB17 /* LVPictureTableViewController.m */,
+				E71A2CEE1C7F356F004DAB17 /* LVWordViewController.h */,
+				E71A2CEF1C7F356F004DAB17 /* LVWordViewController.m */,
+				E7FB872C1C89244E00E2223A /* LVTopicViewController.h */,
+				E7FB872D1C89244E00E2223A /* LVTopicViewController.m */,
+			);
+			name = Topic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -843,6 +856,7 @@
 				E737FEB71C7B27780072C680 /* LVLoginViewController.m in Sources */,
 				E7CF733F1C75EDDC006A22F1 /* UIImage+XMG.m in Sources */,
 				E7369CC71C75E5570073CCCD /* LVNewViewController.m in Sources */,
+				E7FB872E1C89244F00E2223A /* LVTopicViewController.m in Sources */,
 				E707A4C91C846AAE0007B921 /* LVTopicVideoView.m in Sources */,
 				E71FB9C41C79D9F60038CCFE /* LVsubTagTableController.m in Sources */,
 				E7B708D21C7C82FA00B14362 /* LVWebViewController.m in Sources */,

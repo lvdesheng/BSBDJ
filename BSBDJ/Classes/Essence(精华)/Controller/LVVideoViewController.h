@@ -6,8 +6,9 @@
 //  Copyright © 2016年 lvdesheng. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LVTopicViewController.h"
 
-@interface LVVideoViewController : UITableViewController
+
+@interface LVVideoViewController : LVTopicViewController
 
 @end

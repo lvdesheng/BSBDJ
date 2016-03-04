@@ -29,7 +29,7 @@
     {
         CGFloat midlleW = textMaxW;
         CGFloat midlleH = midlleW * self.height / self.width;
-        if (midlleH >= LVScreenH * 0.6){//超长图片
+        if (midlleH >= LVScreenH ){//超长图片
             midlleH = 200;
             
             self.BigPicture = YES;
