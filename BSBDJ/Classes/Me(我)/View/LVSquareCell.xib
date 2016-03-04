@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LVSquareCell">
+            <rect key="frame" x="0.0" y="0.0" width="152" height="152"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="152" height="152"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CFm-87-MQm">
+                        <rect key="frame" x="51" y="10" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="edh-m2-II4"/>
+                            <constraint firstAttribute="height" constant="50" id="jHQ-3e-JIV"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vh3-HD-qXP">
+                        <rect key="frame" x="54" y="124" width="45" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="BW1-dN-bhe"/>
+                            <constraint firstAttribute="width" constant="45" id="JLW-Q6-1rq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JLW-Q6-1rq"/>
+                            </mask>
+                        </variation>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Vh3-HD-qXP" secondAttribute="bottom" constant="10" id="7Oj-JZ-seX"/>
+                <constraint firstItem="Vh3-HD-qXP" firstAttribute="top" secondItem="CFm-87-MQm" secondAttribute="bottom" constant="41.5" id="9mQ-ch-5Ha"/>
+                <constraint firstItem="Vh3-HD-qXP" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="MpZ-vH-Acd"/>
+                <constraint firstItem="CFm-87-MQm" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="e8n-zk-Mtd"/>
+                <constraint firstItem="CFm-87-MQm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="ii3-qe-TlF"/>
+            </constraints>
+            <size key="customSize" width="167" height="172"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="9mQ-ch-5Ha"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="squarImageView" destination="CFm-87-MQm" id="MaX-Xy-v5i"/>
+                <outlet property="squarLabel" destination="Vh3-HD-qXP" id="cXb-c5-BuV"/>
+            </connections>
+            <point key="canvasLocation" x="273.5" y="451"/>
+        </collectionViewCell>
+    </objects>
+</document>

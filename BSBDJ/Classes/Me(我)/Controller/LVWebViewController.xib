@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LVWebViewController">
+            <connections>
+                <outlet property="backItem" destination="s4n-Wb-wpe" id="ZLc-KE-Vr0"/>
+                <outlet property="conentView" destination="aK9-mG-CEt" id="lKO-Fd-Lc1"/>
+                <outlet property="forwarditem" destination="AzV-R8-CAk" id="0OQ-F7-pbw"/>
+                <outlet property="progressLine" destination="ogJ-jM-eRb" id="kAK-CN-Ipy"/>
+                <outlet property="refreshItem" destination="RCd-36-era" id="0RJ-ev-IxW"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-mG-CEt" userLabel="contentView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ogJ-jM-eRb">
+                    <rect key="frame" x="0.0" y="64" width="375" height="2"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="lgf-Km-Djm"/>
+                    </constraints>
+                </progressView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGN-pv-4Jz">
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="oZA-Yp-t1M"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem title="Item" image="arrow_" id="s4n-Wb-wpe">
+                            <connections>
+                                <action selector="backClick:" destination="-1" id="bId-iD-vgx"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="arrow_24.281407035176px_1" id="AzV-R8-CAk">
+                            <connections>
+                                <action selector="forwardClick:" destination="-1" id="dwO-cu-pQh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HCP-4f-vk7"/>
+                        <barButtonItem systemItem="refresh" id="RCd-36-era">
+                            <connections>
+                                <action selector="refreshClick:" destination="-1" id="l6i-BS-efd"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aK9-mG-CEt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8UJ-PG-Vg8"/>
+                <constraint firstAttribute="bottom" secondItem="aK9-mG-CEt" secondAttribute="bottom" constant="44" id="GYr-pd-BkT"/>
+                <constraint firstItem="ogJ-jM-eRb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="333" id="O3h-RB-DDs"/>
+                <constraint firstAttribute="bottom" secondItem="OGN-pv-4Jz" secondAttribute="bottom" id="OBZ-Eg-QX3"/>
+                <constraint firstItem="OGN-pv-4Jz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TXP-aG-Gwc"/>
+                <constraint firstAttribute="trailing" secondItem="OGN-pv-4Jz" secondAttribute="trailing" id="bMG-Fo-UVW"/>
+                <constraint firstItem="aK9-mG-CEt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cfw-yk-yEK"/>
+                <constraint firstAttribute="trailing" secondItem="ogJ-jM-eRb" secondAttribute="trailing" id="dEL-SX-BPW"/>
+                <constraint firstItem="ogJ-jM-eRb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="mhl-AY-lPv"/>
+                <constraint firstItem="ogJ-jM-eRb" firstAttribute="width" secondItem="aK9-mG-CEt" secondAttribute="width" id="n5C-6E-acl"/>
+                <constraint firstAttribute="trailing" secondItem="aK9-mG-CEt" secondAttribute="trailing" id="ned-c8-dkt"/>
+                <constraint firstItem="ogJ-jM-eRb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qNH-qm-ckm"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="O3h-RB-DDs"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow_" width="24" height="31"/>
+        <image name="arrow_24.281407035176px_1" width="24" height="31"/>
+    </resources>
+</document>
