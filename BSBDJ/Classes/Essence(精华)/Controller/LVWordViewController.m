@@ -14,4 +14,10 @@
 
 @implementation LVWordViewController
 
+
+- (LVTopicType)type
+{
+    return LVTopicTypeWord;
+}
+
 @end

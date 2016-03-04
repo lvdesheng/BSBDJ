@@ -57,10 +57,7 @@
   
     [self setNavigationBar];
     
-
-
-    
-    
+  
     //添加子控制器
     
     [self setupChildControllers];

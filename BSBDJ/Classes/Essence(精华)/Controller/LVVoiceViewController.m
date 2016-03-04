@@ -13,4 +13,10 @@
 @end
 
 @implementation LVVoiceViewController
+
+- (LVTopicType)type
+{
+    return LVTopicTypeVoice;
+}
+
 @end

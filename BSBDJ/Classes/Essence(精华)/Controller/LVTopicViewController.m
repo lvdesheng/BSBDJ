@@ -45,8 +45,7 @@
 @property (nonatomic, weak)  UILabel *headerLabel;
 /**是否正在下拉刷新*/
 @property (nonatomic, assign,getter=isHeaderRefeshing)BOOL headerRefeshing;
-// 写这个方法声明：仅仅是为了点语法有智能提示
-- (LVTopicType)type;
+
 
 @end
 
@@ -64,21 +63,6 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
         
     }
     return _mgr;
-}
-
-
-- (LVTopicType)type
-{
-  
-    if (self.class == [LVAllViewController class]) return LVTopicTypeAll;
-    if (self.class == [LVVideoViewController class]) return LVTopicTypeVideo;
-    if (self.class == [LVVoiceViewController class]) return LVTopicTypeVoice;
-    if (self.class == [LVPictureTableViewController class]) return LVTopicTypePicture;
-    if (self.class == [LVWordViewController class]) return LVTopicTypeWord;
-
-    
-    
-    return 0;
 }
 
 
@@ -117,12 +101,7 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 //刷新控件
 - (void)setupResh
 {
-    //广告条
-    UILabel *adLabel = [[UILabel alloc]init];
-    adLabel.frame = CGRectMake(0, 0, self.tableView.width, 25);
-    adLabel.backgroundColor = [UIColor grayColor];
-    adLabel.text = @"广告条";
-    self.tableView.tableHeaderView = adLabel;
+
     //header下拉刷新加载数据
     UIView *header = [[UIView alloc]init];
     header.frame = CGRectMake(0, -50, self.tableView.width, 50);

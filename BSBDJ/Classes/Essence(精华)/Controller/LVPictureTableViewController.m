@@ -14,4 +14,10 @@
 
 @implementation LVPictureTableViewController
 
+
+- (LVTopicType)type
+{
+    return LVTopicTypePicture;
+}
+
 @end

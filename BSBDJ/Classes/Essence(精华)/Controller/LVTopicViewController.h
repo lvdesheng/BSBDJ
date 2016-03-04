@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LVTopic.h"
 
 @interface LVTopicViewController : UITableViewController
+
+- (LVTopicType)type;
 
 @end

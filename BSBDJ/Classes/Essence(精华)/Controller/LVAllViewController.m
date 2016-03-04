@@ -15,5 +15,10 @@
     [super viewDidLoad];
 }
 
+- (LVTopicType)type
+{
+    return LVTopicTypeAll;
+}
+
 @end
 

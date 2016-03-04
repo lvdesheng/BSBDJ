@@ -12,4 +12,9 @@
 
 @implementation LVVideoViewController
 
+
+- (LVTopicType)type
+{
+    return LVTopicTypeVideo;
+}
 @end
