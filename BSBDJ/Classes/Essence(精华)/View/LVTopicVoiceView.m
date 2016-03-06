@@ -9,6 +9,7 @@
 #import "LVTopicVoiceView.h"
 #import "UIImageView+WebCache.h"
 #import "LVTopic.h"
+#import "LVSeeBigPictureController.h"
 
 @interface LVTopicVoiceView ()
 
@@ -19,6 +20,32 @@
 @end
 
 @implementation LVTopicVoiceView
+
+
+//初始化
+- (void)awakeFromNib
+{
+    self.imageView.userInteractionEnabled = YES;
+    
+    //给图片添加手势从而有监听手势
+    
+    
+    [self.imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeBigPicture)]];
+}
+
+#pragma mark - 手势点击
+- (void)seeBigPicture
+{
+    LVSeeBigPictureController *SeeBigPictureController = [[LVSeeBigPictureController alloc]init];
+    
+    SeeBigPictureController.topic = self.topic;
+    //因为要用modal出来的控制器 所以要用一个控制器来modal---一般用keyWindow的根控制器
+    UIViewController *rootVC =[UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    [rootVC presentViewController:SeeBigPictureController animated:YES completion:nil];
+    
+    
+}
 
 - (void)setTopic:(LVTopic *)topic
 {

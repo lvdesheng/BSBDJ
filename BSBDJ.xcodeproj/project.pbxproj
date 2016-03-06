@@ -76,6 +76,8 @@
 		E7B9578B1C840A7F00EF83FA /* LVTopAndBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B9578A1C840A7F00EF83FA /* LVTopAndBottomCell.m */; };
 		E7B957991C84219300EF83FA /* LVTopAndBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B957981C84219300EF83FA /* LVTopAndBottomCell.xib */; };
 		E7CB0BDE1C7F165B00EC0F08 /* LVTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CB0BDD1C7F165B00EC0F08 /* LVTitleButton.m */; };
+		E7CB8ECD1C8C423E00300648 /* LVSeeBigPictureController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CB8ECB1C8C423E00300648 /* LVSeeBigPictureController.m */; };
+		E7CB8ECE1C8C423E00300648 /* LVSeeBigPictureController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7CB8ECC1C8C423E00300648 /* LVSeeBigPictureController.xib */; };
 		E7CF733F1C75EDDC006A22F1 /* UIImage+XMG.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CF733E1C75EDDC006A22F1 /* UIImage+XMG.m */; };
 		E7FB872E1C89244F00E2223A /* LVTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FB872D1C89244E00E2223A /* LVTopicViewController.m */; };
 /* End PBXBuildFile section */
@@ -197,6 +199,9 @@
 		E7B957981C84219300EF83FA /* LVTopAndBottomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LVTopAndBottomCell.xib; sourceTree = "<group>"; };
 		E7CB0BDC1C7F165B00EC0F08 /* LVTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVTitleButton.h; sourceTree = "<group>"; };
 		E7CB0BDD1C7F165B00EC0F08 /* LVTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVTitleButton.m; sourceTree = "<group>"; };
+		E7CB8ECA1C8C423E00300648 /* LVSeeBigPictureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVSeeBigPictureController.h; sourceTree = "<group>"; };
+		E7CB8ECB1C8C423E00300648 /* LVSeeBigPictureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVSeeBigPictureController.m; sourceTree = "<group>"; };
+		E7CB8ECC1C8C423E00300648 /* LVSeeBigPictureController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LVSeeBigPictureController.xib; sourceTree = "<group>"; };
 		E7CF733D1C75EDDC006A22F1 /* UIImage+XMG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XMG.h"; sourceTree = "<group>"; };
 		E7CF733E1C75EDDC006A22F1 /* UIImage+XMG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XMG.m"; sourceTree = "<group>"; };
 		E7FB872C1C89244E00E2223A /* LVTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVTopicViewController.h; sourceTree = "<group>"; };
@@ -308,6 +313,9 @@
 			children = (
 				E7369CBF1C75E50A0073CCCD /* LVEssenceController.h */,
 				E7369CC01C75E50A0073CCCD /* LVEssenceController.m */,
+				E7CB8ECA1C8C423E00300648 /* LVSeeBigPictureController.h */,
+				E7CB8ECB1C8C423E00300648 /* LVSeeBigPictureController.m */,
+				E7CB8ECC1C8C423E00300648 /* LVSeeBigPictureController.xib */,
 				E7FB872B1C89242300E2223A /* Topic */,
 			);
 			path = Controller;
@@ -764,6 +772,7 @@
 				E7B708D31C7C82FA00B14362 /* LVWebViewController.xib in Resources */,
 				E77FAF7D1C780A2B00370A3D /* LVAdViewController.xib in Resources */,
 				E707575E1C7C366D00AE4A59 /* LVSquareCell.xib in Resources */,
+				E7CB8ECE1C8C423E00300648 /* LVSeeBigPictureController.xib in Resources */,
 				E77FAF871C7810BF00370A3D /* LaunchImage-700-568h@2x.png in Resources */,
 				E77FAF8B1C7810BF00370A3D /* LaunchImage.png in Resources */,
 				E707A4CB1C846AC00007B921 /* LVTopicVideoView.xib in Resources */,
@@ -857,6 +866,7 @@
 				E7CF733F1C75EDDC006A22F1 /* UIImage+XMG.m in Sources */,
 				E7369CC71C75E5570073CCCD /* LVNewViewController.m in Sources */,
 				E7FB872E1C89244F00E2223A /* LVTopicViewController.m in Sources */,
+				E7CB8ECD1C8C423E00300648 /* LVSeeBigPictureController.m in Sources */,
 				E707A4C91C846AAE0007B921 /* LVTopicVideoView.m in Sources */,
 				E71FB9C41C79D9F60038CCFE /* LVsubTagTableController.m in Sources */,
 				E7B708D21C7C82FA00B14362 /* LVWebViewController.m in Sources */,
