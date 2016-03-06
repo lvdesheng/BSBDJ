@@ -87,6 +87,8 @@
 
     PHAuthorizationStatus oldStatus = [PHPhotoLibrary authorizationStatus];
     
+
+    
     // 判断当前的授权状态
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         switch (status) {
@@ -119,39 +121,61 @@
 
 
 /**
+ *  获得当前App对应的【自定义相册】
+ */
+- (PHAssetCollection *)createdCollection
+{
+    // 抓取所有【自定义相册】
+    PHFetchResult<PHAssetCollection *> *collections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    // 从Info.plist中获得App名称(也就是当前App的相册名称)
+    NSString *title = [NSBundle mainBundle].infoDictionary[(NSString *)kCFBundleNameKey];
+    for (PHAssetCollection *collection in collections) {
+        if ([collection.localizedTitle isEqualToString:title]) {
+            // 【自定义相册】已经创建过
+            return collection;
+        }
+    }
+    
+    __block NSString *collectionId = nil;
+    [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
+        // 创建【自定义相册】
+        collectionId = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:title].placeholderForCreatedAssetCollection.localIdentifier;
+    } error:nil];
+    
+    // 根据id获得刚刚创建完的相册
+    return [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[collectionId] options:nil].firstObject;
+}
+
+/**
  *  保存图片
  */
 - (void)saveImage
 {
-    // CFStringRef -> Core Foundation (C)
-    // NSString *  -> Foundation (Objective-C)
-    // Core Foundation和Foundation框架的数据类型之间可以利用__bridge互相转换
-    // NSString *string = (__bridge NSString *)kCFBundleNameKey;
-    // CFStringRef string = (__bridge CFStringRef)@"jack";
+    // 凡是遵守NSFastEnumeration协议的对象，都可以使用for-in来遍历, for-in的效率普通for循环高
+    // performChanges里面不能嵌套performChanges
+    
+    // 获得【自定义相册】
+    PHAssetCollection *createdCollection = self.createdCollection;
     
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        // 保存图片到【相机胶卷】 - 添加一个新的PHAsset对象
-        [PHAssetChangeRequest creationRequestForAssetFromImage:self.imageView.image];
+        // 保存图片到【相机胶卷】
+        // createdAsset 就代表 刚才添加到【相机胶卷】中的图片
+        PHObjectPlaceholder *createdAsset = [PHAssetChangeRequest creationRequestForAssetFromImage:self.imageView.image].placeholderForCreatedAsset;
         
-        // 从Info.plist中获得App名称
-        NSString *title = [NSBundle mainBundle].infoDictionary[(NSString *)kCFBundleNameKey];
-        // 拥有一个【自定义相册】
-        [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:title];
-    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-        LVLog(@"%zd", success);
+        // 将对应的相册传入，创建一个【相册修改请求】对象
+        PHAssetCollectionChangeRequest *collectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:createdCollection];
+        
+        // 将保存到【相机胶卷】的图片添加到【自定义相册】
+        [collectionChangeRequest insertAssets:@[createdAsset] atIndexes:[NSIndexSet indexSetWithIndex:0]];
+    } completionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            [SVProgressHUD showSuccessWithStatus:@"保存成功！"];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"保存失败！"];
+        }
     }];
-    
-    // 将保存到【相机胶卷】的图片添加到【自定义相册】
 }
 
-//- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-//{
-//    if (error){
-//        [SVProgressHUD showErrorWithStatus:@"保存失败"];
-//    }else{
-//        [SVProgressHUD showSuccessWithStatus:@"保存成功"];
-//    }
-//}
 
 - (IBAction)back:(id)sender {
     
