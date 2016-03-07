@@ -13,6 +13,8 @@
 #import <MJExtension/MJExtension.h>
 #import "LVSquareItem.h"
 #import "LVWebViewController.h"
+#import "LVRefreshHearder.h"
+
 
 
 
@@ -44,6 +46,10 @@ static NSString * const ID = @"LVSquareCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    self.tableView.mj_header = [LVRefreshHearder headerWithRefreshingBlock:^{
+//        LVFunc
+//    }];
 
     //设置导航条
     [self setNavgationBar];

@@ -12,6 +12,8 @@
 #import "LVsubTagsItems.h"
 #import "LVSubTagTableViewCell.h"
 #import <SVProgressHUD.h>
+#import "LVRefreshHearder.h"
+
 
 static NSString * const ID = @"cell";
 
@@ -29,6 +31,12 @@ static NSString * const ID = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    __weak LVsubTagTableController *subTagTableController = self;
+    self.tableView.mj_header = [LVRefreshHearder headerWithRefreshingBlock:^{
+        
+        [subTagTableController.tableView.mj_header endRefreshing];
+    }];
     
     //设置订阅的中间的文字
     self.title = @"推荐标签";

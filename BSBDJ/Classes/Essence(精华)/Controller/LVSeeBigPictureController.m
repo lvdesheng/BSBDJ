@@ -86,12 +86,10 @@
 //    UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 
     PHAuthorizationStatus oldStatus = [PHPhotoLibrary authorizationStatus];
-    
-
-    
+   
     // 判断当前的授权状态
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        
+     
         dispatch_async(dispatch_get_main_queue(), ^{
             switch (status)
             {
@@ -114,13 +112,11 @@
                     [self saveImage];
                     break;
                 }
-                
+                    
                 default:
                     break;
             }
-            
         });
-        
 
     }];
 

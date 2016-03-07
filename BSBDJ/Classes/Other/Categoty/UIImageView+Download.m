@@ -15,7 +15,9 @@
 
 - (void)LV_setLargeImageUrl:(NSString *)largeImageUrl smallImageUrl:(NSString *)smallImageUrl placeholder:(UIImage *)placeholder
 {
-    //真机调试才有效
+//       [self sd_setImageWithURL:[NSURL URLWithString:largeImageUrl] placeholderImage:placeholder];
+    
+//    真机调试才有效
     UIImage *largeImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:largeImageUrl];
     if (largeImage) {
         self.image = largeImage;
@@ -29,6 +31,7 @@
             self.image = placeholder; // 或者显示占位图片
         }
     }
+
 
     
 }

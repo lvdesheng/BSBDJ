@@ -19,6 +19,8 @@
 #import "LVPictureTableViewController.h"
 #import "LVWordViewController.h"
 #import "MJRefresh.h"
+#import "LVRefreshHearder.h"
+
 
 
 
@@ -33,14 +35,6 @@
 
 /**当需要加载下一页时：需要传入加载上一页时返回值字段“maxtime”中的内容*/
 @property (nonatomic, copy) NSString *maxtime;
-
-
-///********footer*****/
-//@property (nonatomic, weak)  UIView *footer;
-//@property (nonatomic, weak)  UILabel *footLabel;
-///**是否正在上拉刷新*/
-//@property (nonatomic, assign,getter=isFooterRefeshing)BOOL footerRefeshing;
-
 
 
 
@@ -101,16 +95,14 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 
     //header下拉刷新加载数据
     
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
+    self.tableView.mj_header = [LVRefreshHearder headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
     //进入刷新状态
     [self.tableView.mj_header beginRefreshing];
-    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+
     
-    
-    
-    
+  
     //foot -上啦加载更多
-    self.tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
+    self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
 
     
 }
@@ -205,7 +197,10 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 #pragma mark - 监听点击
 - (void)titleButtonDidReapetClick
 {
+    
+    
     [self tabBarButtonDidReapetClick];
+    
 }
 
 - (void)tabBarButtonDidReapetClick
@@ -215,13 +210,13 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
     //如果当前控制器的view没有跟window重叠
     if (self.tableView.scrollsToTop == NO) return;
     
+    //进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
+    
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 #pragma mark - Table view data source
 
@@ -244,14 +239,12 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
     [topic cellHeight];
     cell.topic = topic;
     
-    
     return cell;
 }
 
 #pragma mark - 代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-
     
     [[SDImageCache sharedImageCache] clearMemory];
 }
@@ -259,19 +252,12 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
+ 
     //计算cell的高度
     
-    LVTopic *topic =  self.topics[indexPath.row];
-    
-    return topic.cellHeight;
-    
+    return self.topics[indexPath.row].cellHeight;
     
 }
-
-
-
 
 @end
 
