@@ -35,11 +35,11 @@
 @property (nonatomic, copy) NSString *maxtime;
 
 
-/********footer*****/
-@property (nonatomic, weak)  UIView *footer;
-@property (nonatomic, weak)  UILabel *footLabel;
-/**是否正在上拉刷新*/
-@property (nonatomic, assign,getter=isFooterRefeshing)BOOL footerRefeshing;
+///********footer*****/
+//@property (nonatomic, weak)  UIView *footer;
+//@property (nonatomic, weak)  UILabel *footLabel;
+///**是否正在上拉刷新*/
+//@property (nonatomic, assign,getter=isFooterRefeshing)BOOL footerRefeshing;
 
 
 
@@ -110,19 +110,8 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
     
     
     //foot -上啦加载更多
-    UIView *footer = [[UIView alloc]init];
-    footer.frame = CGRectMake(0, 0, self.tableView.width, 35);
-    footer.backgroundColor = [UIColor redColor];
-    self.tableView.tableFooterView = footer;
-    self.footer = footer;
-    
-    UILabel *footLabel = [[UILabel alloc] init];
-    footLabel.frame = footer.bounds;
-    footLabel.text = @"上拉加载更多";
-    footLabel.textAlignment = NSTextAlignmentCenter;
-    footLabel.textColor = [UIColor whiteColor];
-    [footer addSubview:footLabel];
-    self.footLabel = footLabel;
+    self.tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
+
     
 }
 
@@ -159,12 +148,13 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
         //AFN任务取消了也会来到failure这个block
         if (error.code == NSURLErrorCancelled)
         {
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
             LVLog(@"任务被取消了");
         }else
         {
             [SVProgressHUD showErrorWithStatus:@"网络繁忙请稍后再试"];
         }
-        
         
     }];
     
@@ -201,12 +191,12 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
         [self.tableView reloadData];
         
         //结束刷新
-        [self footerEndRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //结束刷新
-        [self footerEndRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         
         
     }];
@@ -237,7 +227,7 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.footer.hidden = (self.topics.count == 0);
+    self.tableView.mj_footer.hidden = (self.topics.count==0);
     return self.topics.count;
 }
 
@@ -261,10 +251,7 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 #pragma mark - 代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    //处理header
 
-    //处理footer
-    [self dealFooter];
     
     [[SDImageCache sharedImageCache] clearMemory];
 }
@@ -286,51 +273,6 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 
 
 
-
-- (void)dealFooter
-{
-    // 如果没有数据，就直接返回
-    if (self.topics.count == 0) return;
-    // 如果正在刷新
-    if (self.isFooterRefeshing) return;
-    
-    // 如果偏移量 >= offsetY, 就说明footer已经完全出现
-    CGFloat offsetY = self.tableView.contentSize.height + self.tableView.contentInset.bottom - self.tableView.height;
-    
-    if (self.tableView.contentOffset.y >= offsetY) {
-        [self footerBeginRefreshing];
-    }
-}
-
-
-
-#pragma mark - footer
-/**
- *  让footer进入刷新状态
- */
-- (void)footerBeginRefreshing
-{
-    // 这句代码是防止【上拉】和【下拉】同时执行
-    //    if (self.isHeaderRefreshing) return;
-    if (self.isFooterRefeshing) return;
-    
-    // 修改文字
-    self.footLabel.text = @"正在加载更多数据...";
-    
-    // 记录一下正在加载更多数据
-    self.footerRefeshing = YES;
-    
-    [self loadMoreTopics];
-}
-
-/**
- *  让footer结束刷新状态
- */
-- (void)footerEndRefreshing
-{
-    self.footerRefeshing = NO;
-    self.footLabel.text = @"上拉可以加载更多";
-}
 @end
 
 

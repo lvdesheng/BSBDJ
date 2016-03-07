@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LVTabBarController.h"
 #import "LVAdViewController.h"
+#import "AFNetworkReachabilityManager.h"
 
 
 @interface AppDelegate ()
@@ -56,6 +57,9 @@ static UIWindow *topWindow_;
     
     //3.显示窗口
     [self.window makeKeyAndVisible];
+    
+    //4.开始监控网络环境
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
     return YES;
 }
