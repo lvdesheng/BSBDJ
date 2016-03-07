@@ -91,30 +91,37 @@
     
     // 判断当前的授权状态
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        switch (status) {
-                // 这是系统级别的限制（比如家长控制），用户也无法修改这个授权状态
-            case PHAuthorizationStatusRestricted: {
-                [SVProgressHUD showErrorWithStatus:@"由于系统原因，无法保存图片！"];
-                break;
-            }
-                
-                // 用户已经拒绝当前App访问相片数据（说明用户当初选择了“Don't Allow”）
-            case PHAuthorizationStatusDenied: {
-                if (oldStatus != PHAuthorizationStatusNotDetermined) {
-                    LVLog(@"提醒用户去打开访问开关");
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            switch (status)
+            {
+                    // 这是系统级别的限制（比如家长控制），用户也无法修改这个授权状态
+                case PHAuthorizationStatusRestricted: {
+                    [SVProgressHUD showErrorWithStatus:@"由于系统原因，无法保存图片！"];
+                    break;
                 }
-                break;
-            }
+                    
+                    // 用户已经拒绝当前App访问相片数据（说明用户当初选择了“Don't Allow”）
+                case PHAuthorizationStatusDenied: {
+                    if (oldStatus != PHAuthorizationStatusNotDetermined) {
+                        LVLog(@"提醒用户去打开访问开关");
+                    }
+                    break;
+                }
+                    
+                    // 用户已经允许当前App访问相片数据（说明用户当初选择了“OK”）
+                case PHAuthorizationStatusAuthorized: {
+                    [self saveImage];
+                    break;
+                }
                 
-                // 用户已经允许当前App访问相片数据（说明用户当初选择了“OK”）
-            case PHAuthorizationStatusAuthorized: {
-                [self saveImage];
-                break;
+                default:
+                    break;
             }
-                
-            default:
-                break;
-        }
+            
+        });
+        
+
     }];
 
 }

@@ -12,6 +12,13 @@
 
 @implementation UIImageView (Download)
 
++ (void)initialize
+{
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+
+}
+
+
 - (void)LV_setLargeImageUrl:(NSString *)largeImageUrl smallImageUrl:(NSString *)smallImageUrl placeholder:(UIImage *)placeholder
 {
     //真机调试才有效

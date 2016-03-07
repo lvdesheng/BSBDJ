@@ -86,6 +86,7 @@
 		49F104E648E9677926FDC84A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		557E4BFDF59F1C99C10CE500 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		95169529ABD6F43B1D312C89 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E70262AF1C8D440D0052C04F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E707575A1C7C366D00AE4A59 /* LVSquareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVSquareCell.h; sourceTree = "<group>"; };
 		E707575B1C7C366D00AE4A59 /* LVSquareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVSquareCell.m; sourceTree = "<group>"; };
 		E707575C1C7C366D00AE4A59 /* LVSquareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LVSquareCell.xib; sourceTree = "<group>"; };
@@ -903,6 +904,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E7369C811C75D61E0073CCCD /* Base */,
+				E70262AF1C8D440D0052C04F /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

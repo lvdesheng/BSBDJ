@@ -49,7 +49,7 @@
 {
     _topic = topic;
     
-    [self.imageView LV_setLargeImageUrl:topic.image1 smallImageUrl:topic.image0 placeholder:nil];
+//    [self.imageView LV_setLargeImageUrl:topic.image1 smallImageUrl:topic.image0 placeholder:nil];
     
     self.gifView.hidden = !topic.is_gif;
     
@@ -58,8 +58,32 @@
         self.seeBigPictureBTN.hidden = NO;
         self.imageView.contentMode = UIViewContentModeTop;
         self.imageView.clipsToBounds = YES;
+        
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:topic.image1] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+
+            /*解决图片不全问题 */
+            //目标图片大小
+            CGFloat imageW = LVScreenW - 2 * LVMargin;
+            CGFloat imageH = imageW * topic.height / topic.width;
+            
+            //开启上下文
+            UIGraphicsBeginImageContext(CGSizeMake(imageW, imageH));
+            
+            //绘制图片矩形框
+            [image drawInRect:CGRectMake(0, 0, imageW, imageH)];
+            
+            //获得图片
+            self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+            
+            //关闭上下文
+            UIGraphicsEndImageContext();
+        }];
+        
+        
     }else//非长图
     {
+        [self.imageView LV_setLargeImageUrl:topic.image1 smallImageUrl:topic.image0 placeholder:nil];
+        
         self.seeBigPictureBTN.hidden = YES;
         self.imageView.contentMode = UIViewContentModeScaleToFill;
         self.imageView.clipsToBounds = NO;
