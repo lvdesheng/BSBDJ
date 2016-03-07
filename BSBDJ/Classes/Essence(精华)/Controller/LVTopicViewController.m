@@ -13,12 +13,13 @@
 #import "LVTopic.h"
 #import "SVProgressHUD.h"
 #import "LVTopAndBottomCell.h"
-
 #import "LVAllViewController.h"
 #import "LVVideoViewController.h"
 #import "LVVoiceViewController.h"
 #import "LVPictureTableViewController.h"
 #import "LVWordViewController.h"
+#import "MJRefresh.h"
+
 
 
 
@@ -40,11 +41,7 @@
 /**是否正在上拉刷新*/
 @property (nonatomic, assign,getter=isFooterRefeshing)BOOL footerRefeshing;
 
-/********header**********/
-@property (nonatomic, weak)  UIView *header;
-@property (nonatomic, weak)  UILabel *headerLabel;
-/**是否正在下拉刷新*/
-@property (nonatomic, assign,getter=isHeaderRefeshing)BOOL headerRefeshing;
+
 
 
 @end
@@ -103,22 +100,12 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 {
 
     //header下拉刷新加载数据
-    UIView *header = [[UIView alloc]init];
-    header.frame = CGRectMake(0, -50, self.tableView.width, 50);
-    [self.tableView addSubview:header];
-    self.header = header;
     
-    UILabel *headerLabel = [[UILabel alloc] init];
-    headerLabel.frame = header.bounds;
-    headerLabel.backgroundColor = [UIColor redColor];
-    headerLabel.text = @"下拉可以刷新";
-    headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.textAlignment = NSTextAlignmentCenter;
-    [header addSubview:headerLabel];
-    self.headerLabel = headerLabel;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
+    //进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
     
-    //header自动刷新
-    [self headerBeginRefreshing];
     
     
     
@@ -165,7 +152,7 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
         [self.tableView reloadData];
         
         //结束刷新
-        [self headerEndRefrshing];
+        [self.tableView.mj_header endRefreshing];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -238,7 +225,7 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
     //如果当前控制器的view没有跟window重叠
     if (self.tableView.scrollsToTop == NO) return;
     
-    [self headerBeginRefreshing];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -275,7 +262,7 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //处理header
-    [self dealHeader];
+
     //处理footer
     [self dealFooter];
     
@@ -297,39 +284,8 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
 }
 
 
-/**
- *手松开时调用这个方法
- */
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    //如果正在刷新刷新直接退出
-    if(self.isHeaderRefeshing) return;
-    
-    // 如果偏移量 <= offsetY, 就说明header已经完全出现
-    CGFloat offsetY = - (self.tableView.contentInset.top + self.header.height);
-    if (self.tableView.contentOffset.y <= offsetY) {
-        [self headerBeginRefreshing];
-    }
-    
-}
 
-- (void)dealHeader
-{
-    // header还没有创建，直接返回
-    if (self.header == nil) return;
-    // 如果正在刷新
-    if (self.isHeaderRefeshing) return;
-    
-    // 如果偏移量 <= offsetY, 就说明header已经完全出现
-    CGFloat offsetY = - (self.tableView.contentInset.top + self.header.height);
-    if (self.tableView.contentOffset.y <= offsetY) {
-        self.headerLabel.text = @"松开立即刷新";
-        self.headerLabel.backgroundColor = [UIColor blueColor];
-    } else {
-        self.headerLabel.text = @"下拉可以刷新";
-        self.headerLabel.backgroundColor = [UIColor redColor];
-    }
-}
+
 
 - (void)dealFooter
 {
@@ -346,48 +302,7 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
     }
 }
 
-#pragma mark - header
-/**
- *  让header进入刷新状态
- */
-- (void)headerBeginRefreshing
-{
-    // 这句代码是防止【上拉】和【下拉】同时执行
-    //    if (self.isFooterRefreshing) return;
-    if (self.isHeaderRefeshing) return;
-    
-    // 进入刷新状态
-    self.headerLabel.text = @"正在刷新数据...";
-    self.headerLabel.backgroundColor = [UIColor orangeColor];
-    self.headerRefeshing = YES;
-    
-    // 增大内边距
-    [UIView animateWithDuration:0.25 animations:^{
-        UIEdgeInsets inset = self.tableView.contentInset;
-        inset.top += self.header.height;
-        self.tableView.contentInset = inset;
-        
-        self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x,  - inset.top);
-    }];
-    
-    // 加载最新的帖子数据
-    [self loadNewTopics];
-}
 
-/**
- *  让header结束刷新状态
- */
-- (void)headerEndRefrshing
-{
-    self.headerRefeshing = NO;
-    
-    // 恢复内边距
-    [UIView animateWithDuration:0.25 animations:^{
-        UIEdgeInsets inset = self.tableView.contentInset;
-        inset.top -= self.header.height;
-        self.tableView.contentInset = inset;
-    }];
-}
 
 #pragma mark - footer
 /**

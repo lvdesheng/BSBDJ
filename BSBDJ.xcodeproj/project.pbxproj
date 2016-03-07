@@ -27,6 +27,7 @@
 		E71FB9CF1C79E3420038CCFE /* LVSubTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71FB9CD1C79E3420038CCFE /* LVSubTagTableViewCell.xib */; };
 		E71FB9D21C79EE400038CCFE /* UIView+xib.m in Sources */ = {isa = PBXBuildFile; fileRef = E71FB9D11C79EE400038CCFE /* UIView+xib.m */; };
 		E71FB9D51C79FA490038CCFE /* UIImage+Antialias.m in Sources */ = {isa = PBXBuildFile; fileRef = E71FB9D41C79FA490038CCFE /* UIImage+Antialias.m */; };
+		E720362A1C8DA799006501EA /* LVRefreshHearder.m in Sources */ = {isa = PBXBuildFile; fileRef = E72036291C8DA799006501EA /* LVRefreshHearder.m */; };
 		E7369C821C75D61E0073CCCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7369C801C75D61E0073CCCD /* LaunchScreen.storyboard */; };
 		E7369CB71C75DB9E0073CCCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7369CB11C75DB9E0073CCCD /* AppDelegate.m */; };
 		E7369CB81C75DB9E0073CCCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7369CB21C75DB9E0073CCCD /* main.m */; };
@@ -120,6 +121,8 @@
 		E71FB9D11C79EE400038CCFE /* UIView+xib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+xib.m"; sourceTree = "<group>"; };
 		E71FB9D31C79FA490038CCFE /* UIImage+Antialias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Antialias.h"; sourceTree = "<group>"; };
 		E71FB9D41C79FA490038CCFE /* UIImage+Antialias.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Antialias.m"; sourceTree = "<group>"; };
+		E72036281C8DA799006501EA /* LVRefreshHearder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVRefreshHearder.h; sourceTree = "<group>"; };
+		E72036291C8DA799006501EA /* LVRefreshHearder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVRefreshHearder.m; sourceTree = "<group>"; };
 		E7369C6F1C75D61E0073CCCD /* BSBDJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSBDJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7369C811C75D61E0073CCCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7369C831C75D61E0073CCCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -561,6 +564,8 @@
 			children = (
 				E76B76411C773141007B11B0 /* LVTabBar.h */,
 				E76B76421C773141007B11B0 /* LVTabBar.m */,
+				E72036281C8DA799006501EA /* LVRefreshHearder.h */,
+				E72036291C8DA799006501EA /* LVRefreshHearder.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -860,6 +865,7 @@
 				E707A4C41C846A6A0007B921 /* LVTopicVoiceView.m in Sources */,
 				E76B764F1C776166007B11B0 /* LVNavgationController.m in Sources */,
 				E7369CD11C75E8B00073CCCD /* LVTabBarController.m in Sources */,
+				E720362A1C8DA799006501EA /* LVRefreshHearder.m in Sources */,
 				E73ADDE51C88797A009B7729 /* UIImageView+Download.m in Sources */,
 				E71A2CE71C7F3536004DAB17 /* LVVideoViewController.m in Sources */,
 				E71FB9D51C79FA490038CCFE /* UIImage+Antialias.m in Sources */,
