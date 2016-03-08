@@ -102,7 +102,7 @@ static NSString * const LVTopAndBottomCellID = @"LVTopAndBottomCellID";
     
   
     //foot -上啦加载更多
-    self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
+    self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
 
     
 }
